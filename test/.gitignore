@@ -1,0 +1,9 @@
+# Igore everithig
+*.*
+
+# Do not ignore gitignore file
+!.gitignore
+
+# Do not ignore testbenches files
+!tb_*.vhd
+!tb_*.v

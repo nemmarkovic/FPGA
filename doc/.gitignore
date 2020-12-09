@@ -1,0 +1,8 @@
+# Igore everithig
+*.*
+
+# Do not ignore gitignore file
+!.gitignore
+
+# Do not ignore *.png files
+!*.png
