@@ -1,0 +1,9 @@
+# Igore everithig
+*.*
+
+# Do not ignore gitignore file
+!.gitignore
+
+# Do not ignore *.vhd and *.v files
+!*.vhd
+!*.v

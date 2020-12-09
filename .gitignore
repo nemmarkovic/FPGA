@@ -1,0 +1,17 @@
+# Igore everithig
+*.*
+
+# Do not ignore gitignore file
+!.gitignore
+
+# Do not ignore Doc folder
+!Doc/*
+
+# Do not ignore Proj folder
+!proj/*
+
+# Do not ignore src folder
+!src/*
+
+# Do not ignore test folder
+!test/*
