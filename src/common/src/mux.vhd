@@ -32,12 +32,12 @@ entity mux is
       G_INPUT_SIZE   : natural := 8 );
    port (
       --! Input vector (all mux inputs concatenated)
-      i_vec : in  STD_LOGIC_VECTOR (G_INPUT_SIZE * G_NO_OF_INPUTS -1 downto 0);
+      i_vec : in  std_logic_vector (G_INPUT_SIZE * G_NO_OF_INPUTS -1 downto 0);
       --! Input select signal
-      i_sel : in  STD_LOGIC_VECTOR (f_clog2(G_NO_OF_INPUTS) -1 downto 0);
+      i_sel : in  std_logic_vector (f_clog2(G_NO_OF_INPUTS) -1 downto 0);
       --! Mux output
       --! Selected input will arive as the output
-      o_vec : out STD_LOGIC_VECTOR (G_INPUT_SIZE -1 downto 0));
+      o_vec : out std_logic_vector (G_INPUT_SIZE -1 downto 0));
 end mux;
 
 architecture Behavioral of mux is
