@@ -19,7 +19,7 @@ library ieee;
     use work.p_common.all;
     use work.p_common_tb.all;
 
-entity mux_tb is
+entity tb_mux is
     generic (
        --! Number of MUX inputs
        G_NO_OF_INPUTS : natural := 5;
@@ -30,7 +30,7 @@ entity mux_tb is
        C_GEN_IN_NUM   : natural := 5);
 end;
 
-architecture bench of mux_tb is
+architecture bench of tb_mux is
    -- MAT type is array of inputs for the MUX
    type MAT is array (G_NO_OF_INPUTS -1 downto 0 ) of std_logic_vector(G_INPUT_SIZE -1 downto 0);
    signal s_in_mtrx : MAT := (others =>  ( others => '0'));
