@@ -60,6 +60,38 @@ package p_common is
            o_vec : out STD_LOGIC_VECTOR (G_INPUT_SIZE -1 downto 0));
    end component mux;
 
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-- Description : Basig logic element with variable number of inputs
+--      inputs :
+--               i_vec - LOGIC expects all inputs to be concatenated in one
+--                       input vec
+--     outputs :
+--               o_val - output
+--    generics :
+--               G_NO_OF_INPUTS - number of inputs.
+--               G_LGC_FNC      - logic function, available values:
+--                                "AND", "OR", "XOR", "NOT"
+--
+--        NOTE : if G_LGC_FNC = "NOT" it is expected for G_NO_OF_INPUTS
+--               to be set to 1
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+   component logic is
+      generic (
+         --! Number of MUX inputs
+         G_NO_OF_INPUTS : natural := 2;
+         --! Bit size of one MUX input
+         G_VEC_SIZE     : natural := 1;
+         --! Logic function, available values:
+         --! "AND", "OR", "XOR", "NOT"
+         G_LGC_FNC      : string := "OR" );
+      port (
+         i_vec : in  std_logic_vector (G_NO_OF_INPUTS * G_VEC_SIZE -1 downto 0);
+         o_vec : out std_logic_vector (                 G_VEC_SIZE -1 downto 0));
+   end component logic;
+
+
 end package;
 
 package body p_common is
