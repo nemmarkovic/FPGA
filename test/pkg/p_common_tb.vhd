@@ -4,8 +4,8 @@
 -- Author      : Nebojsa Markovic
 -- Mail        : nemarkovic@yandex.com
 -- Date        : 10 December 2020
--- Description :
---
+-- Description : the package contains common procedure, functions and
+--               data types used in test benches
 -------------------------------------------------------------------------
 -------------------------------------------------------------------------
 library ieee;
@@ -15,11 +15,13 @@ library ieee;
 
 package p_common_tb is
 
+   shared variable seed1, seed2 : integer := 999;
 ---------------------------------------------
 --   functions declaration
 ---------------------------------------------
+   -- takes vector len and gives random generated len'size vector as result
    impure function f_rand_slv(len : integer) return std_logic_vector;
-   shared variable seed1, seed2 : integer := 999;
+
 ---------------------------------------------
 --   Data Types
 ---------------------------------------------
