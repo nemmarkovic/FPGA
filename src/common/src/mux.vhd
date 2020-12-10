@@ -1,11 +1,21 @@
 -------------------------------------------------------------------------
 -------------------------------------------------------------------------
--- file        : cmpr.vhd
+-- file        : mux.vhd
 -- Author      : Nebojsa Markovic
 -- Mail        : nemarkovic@yandex.com
 -- Date        : 09 December 2020
--- Description :
---
+-- Description : G_NO_OF_INPUTS x 1 mulitplexer
+--      inputs :
+--               i_vec - MUX expects all inputs to be concatenated in one
+--                       input vec
+--               i_sel - select one of G_NO_OF_INPUTS as output of the module
+--     outputs :
+--               o_vec - MUX output
+--    generics :
+--               G_NO_OF_INPUTS - number of inputs.
+--                                recommanded G_NO_OF_INPUTS = 2^M
+--               G_INPUT_SIZE   - bit size of one input (in the same time
+--                                output bit size)
 -------------------------------------------------------------------------
 -------------------------------------------------------------------------
 library ieee;
@@ -15,13 +25,19 @@ library ieee;
     use work.p_common.all;
 
 entity mux is
-    generic (
-        G_NO_OF_INPUTS : natural := 5;
-        G_INPUT_SIZE   : natural := 8 );
-    port (
-        i_vec : in  STD_LOGIC_VECTOR (G_INPUT_SIZE * G_NO_OF_INPUTS -1 downto 0);
-        i_sel : in  STD_LOGIC_VECTOR (f_clog2(G_NO_OF_INPUTS) -1 downto 0);
-        o_vec : out STD_LOGIC_VECTOR (G_INPUT_SIZE -1 downto 0));
+   generic (
+      --! Number of MUX inputs
+      G_NO_OF_INPUTS : natural := 5;
+      --! Bit size of one MUX input
+      G_INPUT_SIZE   : natural := 8 );
+   port (
+      --! Input vector (all mux inputs concatenated)
+      i_vec : in  STD_LOGIC_VECTOR (G_INPUT_SIZE * G_NO_OF_INPUTS -1 downto 0);
+      --! Input select signal
+      i_sel : in  STD_LOGIC_VECTOR (f_clog2(G_NO_OF_INPUTS) -1 downto 0);
+      --! Mux output
+      --! Selected input will arive as the output
+      o_vec : out STD_LOGIC_VECTOR (G_INPUT_SIZE -1 downto 0));
 end mux;
 
 architecture Behavioral of mux is

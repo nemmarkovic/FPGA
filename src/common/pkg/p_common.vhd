@@ -4,7 +4,8 @@
 -- Author      : Nebojsa Markovic
 -- Mail        : nemarkovic@yandex.com
 -- Date        : 09 December 2020
--- Description :
+-- Description : the package contains common functions and common data type
+--               definition, also as common components declarations
 --
 -------------------------------------------------------------------------
 -------------------------------------------------------------------------
@@ -22,53 +23,42 @@ package p_common is
 ---------------------------------------------
 --   functions declaration
 ---------------------------------------------
+   -- takes natural value and gives bacl ceil(log2(in_vaql))
    function f_clog2 (in_value : natural) return integer;
 
 ---------------------------------------------
 --   Data Types
 ---------------------------------------------
 
-   -- type TYPE_AXI_LITE_SLAVE_IN is record
-      -- --write
-      -- awaddr  : std_logic_vector(C_S_AXI_ADDR_WIDTH -1 downto 0);
-      -- awprot  : std_logic_vector( 2 downto 0);
-      -- awvalid : std_logic;
-      -- wdata   : std_logic_vector(C_S_AXI_DATA_WIDTH -1 downto 0);
-      -- wstrb   : std_logic_vector( 3 downto 0);
-      -- wvalid  : std_logic;
-      -- bready  : std_logic;
-      -- -- read
-      -- araddr  : std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
-      -- arprot  : std_logic_vector(2 downto 0);
-      -- arvalid : std_logic;
-      -- rready  : std_logic;
-   -- end record;
+---------------------------------------------
+--   Components
+---------------------------------------------
 
-   -- -- Reset Values for TYPE_AXI_LITE_SLAVE type data
-   -- constant TYPE_AXI_LITE_SLAVE_IN_RST : TYPE_AXI_LITE_SLAVE_IN := (
-      -- awaddr  => (others => '0'),
-      -- awprot  => (others => '0'),
-      -- awvalid => '0',
-      -- wdata   => (others => '0'),
-      -- wstrb   => (others => '0'),
-      -- wvalid  => '0',
-      -- bready  => '0',
-      -- araddr  => (others => '0'),
-      -- arprot  => (others => '0'),
-      -- arvalid => '0',
-      -- rready  => '0');
-
-   -- type TYPE_AXI_LITE_SLAVE_IN_ARRAY is array (natural range <>) of TYPE_AXI_LITE_SLAVE_IN;
-
-component mux is
-    generic (
-        G_NO_OF_INPUTS : natural := 5;
-        G_INPUT_SIZE   : natural := 8 );
-    port (
-        i_vec : in  STD_LOGIC_VECTOR (G_INPUT_SIZE * G_NO_OF_INPUTS -1 downto 0);
-        i_sel : in  STD_LOGIC_VECTOR (f_clog2(G_NO_OF_INPUTS) -1 downto 0);
-        o_vec : out STD_LOGIC_VECTOR (G_INPUT_SIZE -1 downto 0));
-end component mux;
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-- Description : G_NO_OF_INPUTS x 1 mulitplexer
+--      inputs :
+--               i_vec - MUX expects all inputs to be concatenated in one
+--                       input vec
+--               i_sel - select one of G_NO_OF_INPUTS as output of the module
+--     outputs :
+--               o_vec - MUX output
+--    generics :
+--               G_NO_OF_INPUTS - number of inputs.
+--                                recommanded G_NO_OF_INPUTS = 2^M
+--               G_INPUT_SIZE   - bit size of one input (in the same time
+--                                output bit size)
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+   component mux is
+       generic (
+           G_NO_OF_INPUTS : natural := 5;
+           G_INPUT_SIZE   : natural := 8 );
+       port (
+           i_vec : in  STD_LOGIC_VECTOR (G_INPUT_SIZE * G_NO_OF_INPUTS -1 downto 0);
+           i_sel : in  STD_LOGIC_VECTOR (f_clog2(G_NO_OF_INPUTS) -1 downto 0);
+           o_vec : out STD_LOGIC_VECTOR (G_INPUT_SIZE -1 downto 0));
+   end component mux;
 
 end package;
 
