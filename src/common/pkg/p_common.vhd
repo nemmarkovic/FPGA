@@ -91,6 +91,26 @@ package p_common is
          o_vec : out std_logic_vector (                 G_VEC_SIZE -1 downto 0));
    end component logic;
 
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+-- Description :
+--      inputs :
+--               i_vec -
+--     outputs :
+--               o_val - output
+--    generics :
+--               G_NO_OF_INPUTS - number of inputs.
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------
+   component cmpr is
+       generic(
+           G_NO_OF_INPUTS : natural := 3;
+           G_VEC_SIZE     : natural := 4 );
+       port (
+           i_vec          : in  std_logic_vector (G_NO_OF_INPUTS * G_VEC_SIZE -1 downto 0);
+           o_vec          : out std_logic_vector (G_NO_OF_INPUTS -1 downto 0));
+   end component cmpr;
+
 
 end package;
 
