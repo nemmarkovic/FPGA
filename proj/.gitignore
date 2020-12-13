@@ -6,3 +6,6 @@
 
 # Do not ignore *.xpr files
 !*.xpr
+
+# Do not ignore constraint files
+!/**/constraints/*.xdc
