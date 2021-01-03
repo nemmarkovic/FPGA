@@ -7,5 +7,8 @@
 # Do not ignore *.xpr files
 !*.xpr
 
+# Do not ignore *.tcl files
+!*.tcl
+
 # Do not ignore constraint files
 !/**/constraints/*.xdc
