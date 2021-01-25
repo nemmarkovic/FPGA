@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="mux_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="mux_tb" />
+            <top_module name="p_common" />
+            <top_module name="p_common_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="69359fs"></ZoomEndTime>
+      <Cursor1Time time="4856fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="254"></NameColumnWidth>
+      <ValueColumnWidth column_width="120"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="5" />
+   <wvobject fp_name="group20" type="group">
+      <obj_property name="label">helper</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/mux_tb/G_NO_OF_INPUTS" type="other">
+         <obj_property name="ElementShortName">G_NO_OF_INPUTS</obj_property>
+         <obj_property name="ObjectShortName">G_NO_OF_INPUTS</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mux_tb/G_INPUT_SIZE" type="other">
+         <obj_property name="ElementShortName">G_INPUT_SIZE</obj_property>
+         <obj_property name="ObjectShortName">G_INPUT_SIZE</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mux_tb/virt_clk_period" type="other">
+         <obj_property name="ElementShortName">virt_clk_period</obj_property>
+         <obj_property name="ObjectShortName">virt_clk_period</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mux_tb/s_in_mtrx" type="array">
+         <obj_property name="ElementShortName">s_in_mtrx[4:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">s_in_mtrx[4:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/mux_tb/s_num_generated" type="logic">
+         <obj_property name="ElementShortName">s_num_generated</obj_property>
+         <obj_property name="ObjectShortName">s_num_generated</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/mux_tb/virt_clk" type="logic">
+      <obj_property name="ElementShortName">virt_clk</obj_property>
+      <obj_property name="ObjectShortName">virt_clk</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mux_tb/s_iMUX_vec" type="array">
+      <obj_property name="ElementShortName">s_iMUX_vec[39:0]</obj_property>
+      <obj_property name="ObjectShortName">s_iMUX_vec[39:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mux_tb/s_iMUX_sel" type="array">
+      <obj_property name="ElementShortName">s_iMUX_sel[2:0]</obj_property>
+      <obj_property name="ObjectShortName">s_iMUX_sel[2:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/mux_tb/s_oMUX_vec" type="array">
+      <obj_property name="ElementShortName">s_oMUX_vec[7:0]</obj_property>
+      <obj_property name="ObjectShortName">s_oMUX_vec[7:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+</wave_config>

@@ -7,3 +7,10 @@
 # Do not ignore testbenches files
 !tb_*.vhd
 !tb_*.v
+
+# Do not ignore package files
+!p_*.vhd
+!p_*.v
+
+# Do not ignore vaweform files
+!tb_*.wcfg
