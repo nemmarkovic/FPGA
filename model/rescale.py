@@ -18,8 +18,8 @@ plt.title('Original image')
 plt.show(block=True)
 
 # rgb2gray
-gray = lambda rgb : np.dot(rgb[... , :3] , [0.299 , 0.587, 0.114]) 
-gray = gray(im)  
+gray = lambda rgb : np.dot(rgb[... , :3] , [0.299 , 0.587, 0.114])
+gray = gray(im)
 
 print(gray.dtype)
 
@@ -34,8 +34,8 @@ old_x =   gray.shape[1]
 print("(oldx, oldy) = ", old_x, old_y)
 
 # Add new image dimensions
-new_y = 55#2 * old_y
-new_x = 95#2 * old_x
+new_y = 64
+new_x = 64
 
 print("(new_x, new_y) = ", new_x, new_y)
 
@@ -58,40 +58,39 @@ SF_Y = old_y/new_y
 # vertical resize
 if(SF_Y <= 1.0):
     while (i < new_y -1):
-    
+
         if ready == 'True':
             ready = 'False'
             buf0 = gray[y]
             if y < old_y -1 :
                 buf1 = gray[y +1]
-    
+
         # bilinear interpolation
         rez_im[i] = (buf0 * (i * SF_Y -y) + buf1 * (1 - (i * SF_Y - y)))
         i = i+1
-        
+
         if (i*SF_Y -y > 1.0):
             ready = 'True'
             y = y+1
             #print("i*SF_Y -y: ",i*SF_Y -y, ready)
-    
 
-# if(SF_Y > 1.0):
-    # while (i < new_y -1):
-    
-        # if ready == 'True':
-            # ready = 'False'
-            # buf0 = gray[y]
-            # if y < old_y -1 :
-                # buf1 = gray[y +1]
-    
-        # # bilinear interpolation
-        # rez_im[i] = (buf0 * (i * SF_Y -y) + buf1 * (1 - (i * SF_Y - y)))
-        # i = i+1
-        
-        # if (i*SF_Y -y > 1.0):
-            # ready = 'True'
-            # y = y+1
-            #print("i*SF_Y -y: ",i*SF_Y -y, ready)
+
+if(SF_Y > 1.0):
+    while (i < new_y -1):
+
+        if ready == 'True':
+            ready = 'False'
+            buf0 = gray[y]
+            if y < old_y -1 :
+                buf1 = gray[y +1]
+
+        # bilinear interpolation
+        rez_im[i] = (buf0 * (i * SF_Y -y) + buf1 * (1 - (i * SF_Y - y)))
+        y = y+1
+
+        if (y - i*SF_Y > 1.0):
+            ready = 'True'
+            i = i+1
 
 
 plt.imshow(rez_im, cmap = plt.get_cmap(name = 'gray'))
@@ -108,21 +107,40 @@ x = 0
 i = 0
 ready = 'True'
 
-while (i < new_x -1):
-    
-    if ready == 'True' :
-        ready = 'False'
-        buf_x_0 = rez_im[:,x]
-        if x < old_x -1 :
-            buf_x_1 = rez_im[:,x +1]
+if(SF_X <= 1.0):
+    while (i < new_x -1):
 
-    # bilinear interpolation
-    rez_im2[:,i] = (buf_x_0 * (i * SF_X -x) + buf_x_1 * (1 - (i * SF_X - x)))
-    i = i+1
-    
-    if (i*SF_X -x > 1.0):
-        ready = 'True'
-        x = x+1
-        
+        if ready == 'True' :
+            ready = 'False'
+            buf_x_0 = rez_im[:,x]
+            if x < old_x -1 :
+                buf_x_1 = rez_im[:,x +1]
+
+        # bilinear interpolation
+        rez_im2[:,i] = (buf_x_0 * (i * SF_X -x) + buf_x_1 * (1 - (i * SF_X - x)))
+        i = i+1
+
+        if (i*SF_X -x > 1.0):
+            ready = 'True'
+            x = x+1
+
+
+if(SF_X > 1.0):
+    while (i < new_x -1):
+
+        if ready == 'True':
+            ready = 'False'
+            buf_x_0 = rez_im[:,x]
+            if x < old_x -1 :
+                buf_x_1 = rez_im[:,x +1]
+
+        # bilinear interpolation
+        rez_im2[:,i] = (buf_x_0 * (i * SF_X -x) + buf_x_1 * (1 - (i * SF_X - x)))
+        x = x + 1
+
+        if (x - i*SF_X > 1.0):
+            ready = 'True'
+            i = i + 1
+
 plt.imshow(rez_im2, cmap = plt.get_cmap(name = 'gray'))
 plt.show(block=True)
