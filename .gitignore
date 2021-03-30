@@ -15,3 +15,6 @@
 
 # Do not ignore test folder
 !test/*
+
+# Do not ignore model folder
+!model/*
