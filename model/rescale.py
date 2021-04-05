@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 #imageio.help(name=None)
 #im = imageio.imread('imageio:astronaut.png')
 
-fname = "tigar_128x160.jpg"
-#fname = "tigar_447x612.jpg"
+#fname = "tigar_128x160.jpg"
+fname = "tigar_447x612.jpg"
 #fname = "tigar_porodica_960x540.jpg"
 
 im = imageio.imread(fname)
@@ -31,13 +31,20 @@ plt.show(block=True)
 old_y =   gray.shape[0]
 old_x =   gray.shape[1]
 
+num_of_pfaze = 64
+distance     = 1./64.
+
+max_y = old_y * num_of_pfaze
+max_x = old_x * num_of_pfaze
+
 print("(oldx, oldy) = ", old_x, old_y)
 
 # Add new image dimensions
 new_y = 64
-new_x = 64
+new_x = 75
 
 print("(new_x, new_y) = ", new_x, new_y)
+
 
 # Create empty rezultant image
 rez_im = np.empty((new_y, old_x), order='C', dtype = np.float64)
@@ -52,7 +59,10 @@ y = 0
 i = 0
 ready = 'True'
 #SF_Y = int(new_y/old_y)
-SF_Y = old_y/new_y
+
+k_64 = int((64 * old_y) / new_y)
+print("k_64", k_64)
+SF_Y = k_64/64
 #coeff = [1, 0]
 
 # vertical resize
@@ -102,7 +112,11 @@ rez_im2 = np.empty((new_y, new_x), order='C', dtype = np.float64)
 buf_x_0 =[]
 buf_x_1 =[]
 
-SF_X = old_x/new_x
+kk_64 = int((64 * old_x) / new_x)
+print("kk_64", kk_64)
+SF_X = kk_64/64
+
+#SF_X = old_x/new_x
 x = 0
 i = 0
 ready = 'True'
