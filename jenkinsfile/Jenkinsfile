@@ -1,0 +1,74 @@
+pipeline
+{
+   agent any
+
+   environment 
+   {
+       PATH = "C:/Xilinx/Vivado/2020.1/bin"
+   }
+
+   stages 
+   {
+         stage("Download")
+        {
+            steps
+            {
+                 echo (message : "Download stage")
+                // clean workspavce syntax
+                cleanWs()
+                dir('fpga_repo')
+                {
+                    git(branch : 'main', 
+                        url    : 'https://github.com/nemmarkovic/FPGA.git')
+
+                }
+            }
+        }
+      
+        stage("Build")
+        {
+            steps
+            {
+               echo (message : "Build stage")
+               dir('fpga_repo/proj/comparator/')
+               {
+                    bat(script : """call vivado -source comparator.tcl""" )
+                }
+            }
+        }
+      
+        stage("Publish")
+        {
+            steps
+            {
+                script
+                {
+                    echo (message : "Publish stage")
+                }
+            }
+        }
+    }
+    
+    // post section
+    //post 
+    //{
+    //    always{ echo (message : "POSTBUILD stage")}
+    //    success
+    //    {
+    //        mail(to     : "nebojsa.markovic@rt-rk.com",
+    //             subject: "build results",
+    //             body   : "build SUCCESS")
+    //    }
+    //    failure
+    //    {
+    //        mail(to     : "nebojsa.markovic@rt-rk.com",
+    //             subject: "build results",
+    //             body   : "Job name: ${env.JOB_NAME}. Build number: ${env.BUILD_ID}.")
+    //    }
+    //    unstable
+    //    {
+    //        echo (message : "UNSTABILE build")
+    //    }
+    //       
+    //}
+}
