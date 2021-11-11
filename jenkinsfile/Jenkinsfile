@@ -4,7 +4,8 @@ pipeline
 
    environment 
    {
-       PATH = "C:/Xilinx/Vivado/2020.1/bin"
+       PATH = "$PATH;C:\\WINDOWS\\SYSTEM32;C:/Xilinx/Vivado/2020.1/bin"
+       //PATH = "C:/Xilinx/Vivado/2020.1/bin"
    }
 
    stages 
@@ -32,7 +33,13 @@ pipeline
                echo (message : "Build stage")
                dir('fpga_repo/proj/comparator/')
                {
-                    bat(script : """call vivado -source comparator.tcl""" )
+                    bat(script : """
+                        echo off
+                        echo "HElloo"
+                        echo "%PATH%"
+                        vivado -version"""
+                    )
+                    //bat(script : """call vivado -source comparator.tcl""" )
                 }
             }
         }
